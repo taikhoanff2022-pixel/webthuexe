@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Website cho thuê xe chuyên nghiệp: hiện đại, responsive, hiệu ứng kính mờ, danh sách xe, modal chi tiết, đánh giá, chatbot."
+    />
+    <title>CAR RENT — Thuê xe nhanh chóng</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Bỏ qua nội dung</a>
+
+    <header class="site-header" id="header">
+      <nav class="navbar" aria-label="Điều hướng chính">
+        <a class="brand" href="#home" aria-label="CAR RENT">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">CAR RENT</span>
+        </a>
+
+        <div class="nav-actions">
+          <button
+            class="nav-toggle"
+            id="navToggle"
+            type="button"
+            aria-label="Mở menu"
+            aria-controls="navDrawer"
+            aria-expanded="false"
+          >
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+          </button>
+        </div>
+
+        <div class="nav-desktop" aria-label="Menu desktop">
+          <a class="nav-link" href="#home">Trang chủ</a>
+          <a class="nav-link" href="#cars">Danh sách xe</a>
+          <a class="nav-link" href="#services">Dịch vụ</a>
+          <a class="nav-link" href="#about">Giới thiệu</a>
+          <a class="nav-link" href="#contact">Liên hệ</a>
+          <a class="nav-link nav-cta" href="#login">Đăng nhập</a>
+        </div>
+
+        <div class="nav-overlay" id="navOverlay" hidden></div>
+        <aside class="nav-drawer" id="navDrawer" aria-label="Menu mobile" hidden>
+          <div class="nav-drawer-top">
+            <span class="nav-drawer-title">Menu</span>
+            <button class="nav-drawer-close" id="navClose" type="button" aria-label="Đóng menu">
+              ×
+            </button>
+          </div>
+          <div class="nav-drawer-links">
+            <a class="nav-link" href="#home">Trang chủ</a>
+            <a class="nav-link" href="#cars">Danh sách xe</a>
+            <a class="nav-link" href="#services">Dịch vụ</a>
+            <a class="nav-link" href="#about">Giới thiệu</a>
+            <a class="nav-link" href="#contact">Liên hệ</a>
+            <a class="nav-link nav-cta" href="#login">Đăng nhập</a>
+          </div>
+        </aside>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="home" aria-label="Banner chính">
+        <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+        <div class="container hero-content">
+          <p class="hero-badge reveal">Dịch vụ thuê xe cao cấp</p>
+          <h1 class="hero-title reveal">
+            Thuê xe nhanh chóng —
+            <span class="accent">Giá tốt</span> —
+            Xe chất lượng
+          </h1>
+          <p class="hero-subtitle reveal">Hơn 1000+ xe sẵn sàng phục vụ</p>
+          <div class="hero-cta reveal">
+            <a class="btn btn-primary" href="#search">Thuê ngay</a>
+            <a class="btn btn-ghost" href="#cars">Xem xe</a>
+          </div>
+        </div>
+
+        <div class="container hero-search-wrap" id="search">
+          <form class="search-card reveal" id="searchForm" autocomplete="off">
+            <div class="search-grid">
+              <label class="field">
+                <span class="field-label">Địa điểm nhận xe</span>
+                <input class="field-input" name="pickupLocation" placeholder="VD: Quận 1, TP.HCM" required />
+              </label>
+              <label class="field">
+                <span class="field-label">Địa điểm trả xe</span>
+                <input class="field-input" name="dropoffLocation" placeholder="VD: Sân bay Tân Sơn Nhất" required />
+              </label>
+              <label class="field">
+                <span class="field-label">Ngày nhận</span>
+                <input class="field-input" name="pickupDate" type="date" required />
+              </label>
+              <label class="field">
+                <span class="field-label">Ngày trả</span>
+                <input class="field-input" name="dropoffDate" type="date" required />
+              </label>
+              <label class="field">
+                <span class="field-label">Loại xe</span>
+                <select class="field-input" name="carType" required>
+                  <option value="" selected disabled>Chọn loại xe</option>
+                  <option value="sedan">Sedan</option>
+                  <option value="suv">SUV</option>
+                  <option value="mpv">MPV</option>
+                  <option value="luxury">Luxury</option>
+                  <option value="electric">Electric</option>
+                </select>
+              </label>
+              <button class="btn btn-primary search-btn" type="submit">Tìm xe</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" id="cars" aria-label="Danh sách xe">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title reveal">Danh sách xe nổi bật</h2>
+              <p class="section-subtitle reveal">
+                Chọn xe phù hợp nhu cầu: sang trọng, rộng rãi, tiết kiệm hay điện hoá.
+              </p>
+            </div>
+            <div class="section-tools reveal">
+              <div class="chip" id="resultCount" aria-live="polite"></div>
+            </div>
+          </div>
+
+          <div class="car-grid" id="carGrid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="services" aria-label="Dịch vụ">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title reveal">Dịch vụ</h2>
+              <p class="section-subtitle reveal">Trải nghiệm thuê xe premium từ đặt xe đến hỗ trợ.</p>
+            </div>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature-card reveal">
+              <div class="feature-icon" aria-hidden="true">⚡</div>
+              <h3 class="feature-title">Đặt xe nhanh</h3>
+              <p class="feature-text">Quy trình tối ưu, xác nhận nhanh, hỗ trợ linh hoạt lịch trình.</p>
+            </article>
+            <article class="feature-card reveal">
+              <div class="feature-icon" aria-hidden="true">🛡️</div>
+              <h3 class="feature-title">Bảo hiểm & an toàn</h3>
+              <p class="feature-text">Chính sách minh bạch, ưu tiên an toàn và trải nghiệm khách hàng.</p>
+            </article>
+            <article class="feature-card reveal">
+              <div class="feature-icon" aria-hidden="true">📍</div>
+              <h3 class="feature-title">Giao xe tận nơi</h3>
+              <p class="feature-text">Nhận xe tại nhà, sân bay hoặc điểm hẹn theo yêu cầu.</p>
+            </article>
+            <article class="feature-card reveal">
+              <div class="feature-icon" aria-hidden="true">🕒</div>
+              <h3 class="feature-title">Hỗ trợ 24/7</h3>
+              <p class="feature-text">Tư vấn nhanh, giải quyết sự cố, đồng hành trên mọi hành trình.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="stats" aria-label="Thống kê">
+        <div class="container">
+          <div class="stats-card reveal">
+            <div class="stats-grid">
+              <div class="stat">
+                <div class="stat-number" data-count="5000" data-suffix="+">0</div>
+                <div class="stat-label">Khách hàng</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number" data-count="10" data-suffix="+">0</div>
+                <div class="stat-label">Xe</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number" data-count="24" data-suffix="/7">0</div>
+                <div class="stat-label">Hỗ trợ</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number" data-count="99" data-suffix="%">0</div>
+                <div class="stat-label">Hài lòng</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="about" aria-label="Giới thiệu">
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-copy">
+              <h2 class="section-title reveal">Sang trọng trong từng chi tiết</h2>
+              <p class="section-subtitle reveal">
+                CAR RENT tập trung vào chất lượng xe, trải nghiệm đặt xe mượt và dịch vụ hỗ trợ chuyên nghiệp.
+              </p>
+              <div class="about-points">
+                <div class="about-point reveal">
+                  <span class="dot" aria-hidden="true"></span>
+                  <span>Hợp đồng rõ ràng, quy trình minh bạch</span>
+                </div>
+                <div class="about-point reveal">
+                  <span class="dot" aria-hidden="true"></span>
+                  <span>Đội ngũ tư vấn thân thiện, nhanh chóng</span>
+                </div>
+                <div class="about-point reveal">
+                  <span class="dot" aria-hidden="true"></span>
+                  <span>Xe được kiểm tra định kỳ, vệ sinh kỹ</span>
+                </div>
+              </div>
+              <a class="btn btn-primary reveal" href="#contact">Liên hệ tư vấn</a>
+            </div>
+            <div class="about-media reveal" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="reviews" aria-label="Đánh giá khách hàng">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2 class="section-title reveal">Khách hàng nói gì?</h2>
+              <p class="section-subtitle reveal">Đánh giá thực tế, dịch vụ tốt tạo nên sự khác biệt.</p>
+            </div>
+            <div class="slider-controls reveal">
+              <button class="icon-btn" id="reviewPrev" type="button" aria-label="Trước">‹</button>
+              <button class="icon-btn" id="reviewNext" type="button" aria-label="Sau">›</button>
+            </div>
+          </div>
+
+          <div class="review-slider reveal" aria-live="polite">
+            <div class="review-track" id="reviewTrack"></div>
+          </div>
+          <div class="dots" id="reviewDots" aria-label="Chỉ mục slide"></div>
+        </div>
+      </section>
+
+      <section class="section section-alt" id="contact" aria-label="Liên hệ">
+        <div class="container">
+          <div class="contact-card reveal">
+            <div class="contact-copy">
+              <h2 class="section-title">Liên hệ</h2>
+              <p class="section-subtitle">Gửi yêu cầu, đội ngũ sẽ phản hồi nhanh.</p>
+              <div class="contact-info">
+                <a class="contact-item" href="mailto:support@carrent.vn">
+                  <span class="contact-k">Email</span>
+                  <span class="contact-v">support@carrent.vn</span>
+                </a>
+                <a class="contact-item" href="tel:+84901234567">
+                  <span class="contact-k">Số điện thoại</span>
+                  <span class="contact-v">+84 901 234 567</span>
+                </a>
+                <a
+                  class="contact-item"
+                  href="https://www.google.com/maps?q=Ng%C3%B5%20281%20V%C4%A9nh%20H%C6%B0ng%2C%20Ho%C3%A0ng%20Mai%2C%20H%C3%A0%20N%E1%BB%99i"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span class="contact-k">Google Maps</span>
+                  <span class="contact-v">Mở bản đồ</span>
+                </a>
+              </div>
+              <div class="social">
+                <a class="social-btn" href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a>
+                <a class="social-btn" href="https://tiktok.com" target="_blank" rel="noreferrer">TikTok</a>
+                <a class="social-btn" href="https://m.me" target="_blank" rel="noreferrer">Messenger</a>
+              </div>
+            </div>
+            <form class="contact-form" id="login" aria-label="Đăng nhập (demo)">
+              <h3 class="contact-form-title">Đăng nhập</h3>
+              <label class="field">
+                <span class="field-label">Email</span>
+                <input class="field-input" type="email" placeholder="you@email.com" required />
+              </label>
+              <label class="field">
+                <span class="field-label">Mật khẩu</span>
+                <input class="field-input" type="password" placeholder="••••••••" required />
+              </label>
+              <button class="btn btn-primary" type="submit">Đăng nhập</button>
+              <p class="fineprint">Demo giao diện, không lưu dữ liệu.</p>
+            </form>
+          </div>
+          <div class="map-card reveal" aria-label="Bản đồ Google Maps">
+            <div class="map-top">
+              <h3 class="map-title">Bản đồ</h3>
+              <a
+                class="map-link"
+                href="https://www.google.com/maps?q=Ng%C3%B5%20281%20V%C4%A9nh%20H%C6%B0ng%2C%20Ho%C3%A0ng%20Mai%2C%20H%C3%A0%20N%E1%BB%99i"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Mở trong Google Maps
+              </a>
+            </div>
+            <div class="map-frame">
+              <iframe
+                title="Google Maps - CAR RENT"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Ng%C3%B5%20281%20V%C4%A9nh%20H%C6%B0ng%2C%20Ho%C3%A0ng%20Mai%2C%20H%C3%A0%20N%E1%BB%99i&z=16&output=embed"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" aria-label="Chân trang">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="brand brand-footer">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">CAR RENT</span>
+          </div>
+          <p class="footer-desc">Thuê xe sang trọng, nhanh chóng, minh bạch — sẵn sàng phục vụ 24/7.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#home">Trang chủ</a>
+          <a href="#cars">Danh sách xe</a>
+          <a href="#services">Dịch vụ</a>
+          <a href="#about">Giới thiệu</a>
+          <a href="#contact">Liên hệ</a>
+        </div>
+        <div class="footer-meta">
+          <div class="footer-item">
+            <span class="footer-k">Email</span>
+            <span class="footer-v">support@carrent.vn</span>
+          </div>
+          <div class="footer-item">
+            <span class="footer-k">Hotline</span>
+            <span class="footer-v">+84 901 234 567</span>
+          </div>
+          <div class="footer-item">
+            <span class="footer-k">Địa chỉ</span>
+            <span class="footer-v">Ngõ 281 Vĩnh Hưng, Hoàng Mai, Hà Nội</span>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>© <span id="year"></span> CAR RENT. All rights reserved.</span>
+      </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" type="button" aria-label="Lên đầu trang" hidden>
+      ↑
+    </button>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+      <div class="toast-inner" id="toastInner"></div>
+    </div>
+
+    <div class="modal" id="carModal" role="dialog" aria-modal="true" aria-label="Chi tiết xe" hidden>
+      <div class="modal-overlay" data-close="true"></div>
+      <div class="modal-panel" role="document">
+        <div class="modal-top">
+          <div class="modal-title-wrap">
+            <div class="modal-title" id="modalTitle">Chi tiết xe</div>
+            <div class="modal-subtitle" id="modalSubtitle"></div>
+          </div>
+          <button class="icon-btn" id="modalClose" type="button" aria-label="Đóng">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="modal-media">
+            <div class="media-frame">
+              <img class="media-img" id="modalImg" alt="" />
+              <button class="media-nav prev" id="imgPrev" type="button" aria-label="Ảnh trước">‹</button>
+              <button class="media-nav next" id="imgNext" type="button" aria-label="Ảnh sau">›</button>
+            </div>
+            <div class="thumbs" id="modalThumbs" aria-label="Ảnh thu nhỏ"></div>
+          </div>
+
+          <div class="modal-info">
+            <div class="price-row">
+              <div class="price" id="modalPrice"></div>
+              <div class="rating" id="modalRating"></div>
+            </div>
+            <div class="specs" id="modalSpecs"></div>
+            <div class="divider"></div>
+            <div class="modal-text" id="modalDesc"></div>
+            <div class="divider"></div>
+            <div class="modal-text">
+              <div class="modal-section-title">Điều kiện thuê</div>
+              <ul class="policy" id="modalPolicy"></ul>
+            </div>
+            <div class="modal-actions">
+              <button class="btn btn-primary" id="bookBtn" type="button">Đặt xe</button>
+              <button class="btn btn-ghost" data-close="true" type="button">Đóng</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chatbot" aria-label="Chatbot">
+      <button class="chatbot-fab" id="chatFab" type="button" aria-label="Mở chatbot">
+        <span class="chatbot-fab-dot" aria-hidden="true"></span>
+        Chat
+      </button>
+      <div class="chatbot-panel" id="chatPanel" hidden>
+        <div class="chatbot-top">
+          <div class="chatbot-title">
+            <div class="chatbot-avatar" aria-hidden="true"></div>
+            <div>
+              <div class="chatbot-name">CAR RENT Assistant</div>
+              <div class="chatbot-status">Online • phản hồi mẫu</div>
+            </div>
+          </div>
+          <button class="icon-btn" id="chatClose" type="button" aria-label="Đóng chatbot">×</button>
+        </div>
+        <div class="chatbot-body" id="chatBody" aria-live="polite"></div>
+        <div class="chatbot-quick" id="chatQuick">
+          <button class="chip-btn" type="button" data-quick="Giá thuê">Giá thuê</button>
+          <button class="chip-btn" type="button" data-quick="Thông tin xe">Thông tin xe</button>
+          <button class="chip-btn" type="button" data-quick="Hỗ trợ">Hỗ trợ</button>
+          <button class="chip-btn" type="button" data-quick="Chính sách">Chính sách</button>
+        </div>
+        <form class="chatbot-form" id="chatForm" autocomplete="off">
+          <input class="chatbot-input" id="chatInput" placeholder="Nhập tin nhắn..." />
+          <button class="btn btn-primary btn-sm" type="submit">Gửi</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
